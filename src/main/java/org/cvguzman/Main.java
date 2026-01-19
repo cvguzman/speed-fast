@@ -9,27 +9,32 @@ public class Main {
         System.out.println(" ");
 
         Pedido[] pedidos = {
-                new PedidoComida(),
-                new PedidoEncomienda(),
-                new PedidoExpress(),
+                new PedidoComida(15),
+                new PedidoEncomienda(6),
+                new PedidoExpress(17),
         };
 
         for (Pedido p : pedidos) {
-            p.asignarRepartidor();
+            p.mostrarResumen();
         }
 
         System.out.println(" ");
 
-        System.out.println("::::::PRUEBA SOBRECARGA::::::");
+        System.out.println("::::::PRUEBA SOBRECARGA ------>  TEMPLATE METHOD::::::");
         System.out.println(" ");
 
-        PedidoComida repartidor = new PedidoComida();
-        repartidor.asignarRepartidor("Mauricio Pérez");
+        PedidoComida repartidor = new PedidoComida(15);
+        repartidor.mostrarResumen("Mauricio Pérez");
+        System.out.println("Tiempo de entrega estimado en minutos: "  + repartidor.calcularTiempoEntrega());
 
-        PedidoEncomienda repartidor2 = new PedidoEncomienda();
-        repartidor2.asignarRepartidor("Soraya Marín");
+        PedidoEncomienda repartidor2 = new PedidoEncomienda(6);
+        repartidor2.mostrarResumen("Soraya Marín");
+        System.out.println("Tiempo de entrega estimado en minutos: "  + repartidor2.calcularTiempoEntrega());
 
-        PedidoExpress repartidor3 = new PedidoExpress();
-        repartidor3.asignarRepartidor("Patricio Solís");
+
+        PedidoExpress repartidor3 = new PedidoExpress(17);
+        repartidor3.mostrarResumen("Patricio Solís");
+        System.out.println("Tiempo de entrega estimado en minutos: " + repartidor3.calcularTiempoEntrega());
+
     }
 }
