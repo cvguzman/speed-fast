@@ -2,8 +2,13 @@ package org.cvguzman;
 
 public class PedidoEncomienda extends Pedido {
 
-    public PedidoEncomienda(int distanciaKm){
-        super(distanciaKm);
+    public PedidoEncomienda(int idPedido, String direccionPedido, int distanciaKm){
+        super(idPedido, direccionPedido, distanciaKm);
+    }
+
+    @Override
+    public int getDistanciaKm() {
+        return super.getDistanciaKm();
     }
 
     @Override
@@ -12,7 +17,7 @@ public class PedidoEncomienda extends Pedido {
     }
 
     @Override
-    protected int calcularTiempoEntrega(){
-        return (int) Math.round(20 + 1.5 * getDistanciaKm());
+    public int calcularTiempoEntrega(){
+        return (int) Math.round(20 + 1.5 * distanciaKm);
     }
 }

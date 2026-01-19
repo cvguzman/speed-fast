@@ -2,8 +2,13 @@ package org.cvguzman;
 
 public class PedidoExpress extends Pedido {
 
-    public PedidoExpress(int distanciaKm) {
-        super(distanciaKm);
+    public PedidoExpress(int idPedido, String direccionEntrega, int distanciaKm) {
+        super(idPedido, direccionEntrega, distanciaKm);
+    }
+
+    @Override
+    public int getDistanciaKm() {
+        return super.getDistanciaKm();
     }
 
     @Override
@@ -12,7 +17,7 @@ public class PedidoExpress extends Pedido {
     }
 
     @Override
-    protected int calcularTiempoEntrega() {
+    public int calcularTiempoEntrega() {
         int tiempo = 10;
         if (getDistanciaKm() > 5) {
             tiempo += 5;

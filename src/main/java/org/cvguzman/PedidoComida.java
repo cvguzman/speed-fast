@@ -2,17 +2,22 @@ package org.cvguzman;
 
 public class PedidoComida extends Pedido {
 
-    public PedidoComida(int distanciaKm){
-        super(distanciaKm);
+    public PedidoComida(int idPedido, String direccionEntrega, int distanciaKm){
+        super(idPedido, direccionEntrega,distanciaKm);
+    }
+
+    @Override
+    public int getDistanciaKm() {
+        return super.getDistanciaKm();
     }
 
     @Override
     public void mostrarResumen(String nombreRepartidor) {
-        System.out.println("Pedido número 001 tipo comida con mochila térmica  ha siido asignado al repartidor: " + nombreRepartidor);
+        System.out.println("Pedido número 001 tipo comida con mochila térmica  ha sido asignado al repartidor: " + nombreRepartidor);
     }
 
     @Override
-    protected int calcularTiempoEntrega(){
-        return (int) (15 + 2 * getDistanciaKm());
+    public int calcularTiempoEntrega(){
+        return 15 + 2 * distanciaKm;
     }
 }
