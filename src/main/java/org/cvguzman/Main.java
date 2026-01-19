@@ -1,33 +1,35 @@
 package org.cvguzman;
 
-import static org.cvguzman.TipoPedido.valueOf;
-
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("\n=== Validación con sobrecarga ===");
+        System.out.println(" ");
 
-        Pedido pedido1 = new PedidoComida(
-                55445,
-                "Lo Fontecilla 333,Las Condes",
-                TipoPedido.COMIDA
-        );
+        System.out.println(":::::::PRUEBA POLIMORFISMO ---> SOBRESCRITURA::::::");
+        System.out.println(" ");
 
-        Pedido pedido2 = new PedidoEncomienda(
-                456545,
-                "Freire 451, San Bernardo",
-                TipoPedido.ENCOMIENDA
-        );
+        Pedido[] pedidos = {
+                new PedidoComida(),
+                new PedidoEncomienda(),
+                new PedidoExpress(),
+        };
 
-        Pedido pedido3 = new PedidoExpress(
-                5624,
-                "Los Conquistadores 57, Santiago",
-                TipoPedido.COMPRA_EXPRESS
-        );
+        for (Pedido p : pedidos) {
+            p.asignarRepartidor();
+        }
 
-        pedido1.asignarRepartidor("Marcelo Aranguiz");
-        pedido2.asignarRepartidor("Roberto Cruz");
-        pedido3.asignarRepartidor("Lily Sánchez");
+        System.out.println(" ");
 
+        System.out.println("::::::PRUEBA SOBRECARGA::::::");
+        System.out.println(" ");
+
+        PedidoComida repartidor = new PedidoComida();
+        repartidor.asignarRepartidor("Mauricio Pérez");
+
+        PedidoEncomienda repartidor2 = new PedidoEncomienda();
+        repartidor2.asignarRepartidor("Soraya Marín");
+
+        PedidoExpress repartidor3 = new PedidoExpress();
+        repartidor3.asignarRepartidor("Patricio Solís");
     }
 }

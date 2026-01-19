@@ -1,17 +1,8 @@
 package org.cvguzman;
 
 public class PedidoExpress extends Pedido {
-    public PedidoExpress(int idPedido, String direccionEntrega, TipoPedido tipoPedido) {
-        super(idPedido, direccionEntrega, tipoPedido);
-    }
-
+    @Override
     public void asignarRepartidor(String nombreRepartidor){
-        super.asignarRepartidor(nombreRepartidor);
-
-        System.out.println(
-                "Requerimientos: "
-                        + tipoPedido.getTipoPedido()
-                        + "\n"
-        );
+        System.out.println("Repartidor ha sido asignado para pedido express con disponibilidad inmediata y mas cercano " + nombreRepartidor);
     }
 }

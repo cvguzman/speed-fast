@@ -2,17 +2,8 @@ package org.cvguzman;
 
 public class PedidoComida extends Pedido {
 
-    public PedidoComida(int idPedido, String direccionEntrega, TipoPedido tipoPedido) {
-        super(idPedido, direccionEntrega, tipoPedido);
-    }
-
+    @Override
     public void asignarRepartidor(String nombreRepartidor) {
-        super.asignarRepartidor(nombreRepartidor);
-
-        System.out.println(
-                "Requerimientos: "
-                        + tipoPedido.getTipoPedido()
-                        + "\n"
-        );
+        System.out.println("Repartidor asignado para comida con mochila térmica " + nombreRepartidor);
     }
 }
