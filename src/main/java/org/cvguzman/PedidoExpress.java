@@ -2,8 +2,25 @@ package org.cvguzman;
 
 public class PedidoExpress extends Pedido {
 
-    public PedidoExpress(int idPedido, String direccionEntrega, int distanciaKm) {
-        super(idPedido, direccionEntrega, distanciaKm);
+    public PedidoExpress(){}
+
+    public PedidoExpress(int idPedido, String direccionEntrega, String tipoPedido, int distanciaKm) {
+        super(idPedido, direccionEntrega, tipoPedido, distanciaKm);
+    }
+
+    @Override
+    public int getIdPedido(){
+        return super.getIdPedido();
+    }
+
+    @Override
+    public String getDireccionEntrega(){
+        return super.getDireccionEntrega();
+    }
+
+    @Override
+    public String getTipoPedido(){
+        return super.getTipoPedido();
     }
 
     @Override
@@ -12,8 +29,20 @@ public class PedidoExpress extends Pedido {
     }
 
     @Override
+    public void asignarRepartidor(String nombreRepartidor){
+        System.out.println("El pedido asignado al repartidor: " + nombreRepartidor);
+    }
+
+    @Override
     public void mostrarResumen(String nombreRepartidor) {
-        System.out.println("Pedido número 003 tipo express con disponibilidad inmediata y más cercano ha sido asignado a repartidor: " + nombreRepartidor);
+        System.out.println(
+                "El número pedido "
+                        + getIdPedido()
+                        + " con dirección de entrega: "
+                        + getDireccionEntrega()
+                        + " ha clasificado como tipo pedido: "
+                        + getTipoPedido() + " asignado al repartidor: "
+                        + nombreRepartidor);
     }
 
     @Override
