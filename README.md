@@ -54,16 +54,20 @@ El proyecto está ordenado con una estructura sencilla que separa las tareas:
 
 # org.cvguzman.gestores.
 
+Este paquete contiene las clases encargadas de coordinar la lógica del negocio y la gestión de los pedidos.
+Actúa como una capa intermedia que, organiza las operaciones del sistema, evitando que la lógica principal se concentre en una sola clase y mejorando la mantenibilidad del software.
 
 
 # org.cvguzman.interfaces.
 
-
+En este paquete contiene las intergaces del sistema, las cuales definen los contratos que deben cumplir las clases que las implementan.
+Permite separar responsabilidades como cancelacion, despacho y rastreo de pedidos, promoviendo un diseño desacoplado, reutilizable y fácil de entender.
 
 # org.cvguzman.subclases.
 
 
-
+Este paquete agrupa las clases concretas que heredan de la clase base -Pedido.
+cada subclase representa un tipo específico de pedido (por ejemplo, comida, encomienda o express), encapsulando reglas de negocio particulares y permitiendo aplicar porlimorfismo para tratar distintos pedidos de forma uniforme.
 
 
 ---
@@ -85,7 +89,7 @@ git clone https://github.com/cvguzman/speed-fast.git
 
 ---
 
-**Repositorio GitHub:** https://github.com/cvguzman/salmonttapp-with-csv-loader
+**Repositorio GitHub:** https://github.com/cvguzman/speed-fast
 **Fecha de entrega:** 26/01/2026
 
 ---
