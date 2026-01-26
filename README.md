@@ -73,7 +73,7 @@ El proyecto está ordenado con una estructura sencilla que separa las tareas:
 1. Clona el repositorio desde GitHub:
 
 ```bash
-git clone 
+git clone https://github.com/cvguzman/speed-fast.git
 ```
 
 2. Abre el proyecto en IntelliJ IDEA.
