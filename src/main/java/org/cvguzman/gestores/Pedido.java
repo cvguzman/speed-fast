@@ -1,4 +1,4 @@
-package org.cvguzman;
+package org.cvguzman.gestores;
 
 public abstract class Pedido {
     private int idPedido;
