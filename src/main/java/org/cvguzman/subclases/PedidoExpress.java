@@ -1,11 +1,13 @@
-package org.cvguzman;
+package org.cvguzman.subclases;
 
-public class PedidoEncomienda extends Pedido {
+import org.cvguzman.gestores.Pedido;
 
-    public PedidoEncomienda(){}
+public class PedidoExpress extends Pedido {
 
-    public PedidoEncomienda(int idPedido, String direccionPedido, String tipoPedido, int distanciaKm){
-        super(idPedido, direccionPedido, tipoPedido, distanciaKm);
+    public PedidoExpress(){}
+
+    public PedidoExpress(int idPedido, String direccionEntrega, String tipoPedido, int distanciaKm) {
+        super(idPedido, direccionEntrega, tipoPedido, distanciaKm);
     }
 
     @Override
@@ -46,7 +48,13 @@ public class PedidoEncomienda extends Pedido {
     }
 
     @Override
-    public int calcularTiempoEntrega(){
-        return (int) Math.round(20 + 1.5 * distanciaKm);
+    public int calcularTiempoEntrega() {
+        int tiempo = 10;
+        if (getDistanciaKm() > 5) {
+            tiempo += 5;
+        }
+        return tiempo;
     }
 }
+
+

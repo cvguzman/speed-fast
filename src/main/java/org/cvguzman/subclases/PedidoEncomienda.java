@@ -1,11 +1,13 @@
-package org.cvguzman;
+package org.cvguzman.subclases;
 
-public class PedidoComida extends Pedido {
+import org.cvguzman.gestores.Pedido;
 
-    public PedidoComida(){}
+public class PedidoEncomienda extends Pedido {
 
-    public PedidoComida(int idPedido, String direccionEntrega, String tipoPedido, int distanciaKm){
-        super(idPedido, direccionEntrega, tipoPedido, distanciaKm);
+    public PedidoEncomienda(){}
+
+    public PedidoEncomienda(int idPedido, String direccionPedido, String tipoPedido, int distanciaKm){
+        super(idPedido, direccionPedido, tipoPedido, distanciaKm);
     }
 
     @Override
@@ -42,10 +44,11 @@ public class PedidoComida extends Pedido {
                         + getDireccionEntrega()
                         + " ha clasificado como tipo pedido: "
                         + getTipoPedido() + " asignado al repartidor: "
-                        + nombreRepartidor);       }
+                        + nombreRepartidor);
+    }
 
     @Override
     public int calcularTiempoEntrega(){
-        return 15 + 2 * distanciaKm;
+        return (int) Math.round(20 + 1.5 * distanciaKm);
     }
 }
