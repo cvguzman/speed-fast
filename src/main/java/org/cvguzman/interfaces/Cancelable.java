@@ -1,5 +1,5 @@
 package org.cvguzman.interfaces;
 
 public interface Cancelable {
-    boolean cancelar(String motivoCancelacion);
+    String cancelar(String motivoCancelacion);
 }

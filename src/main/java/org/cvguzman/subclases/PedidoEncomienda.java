@@ -2,6 +2,8 @@ package org.cvguzman.subclases;
 
 import org.cvguzman.gestores.Pedido;
 
+import java.util.List;
+
 public class PedidoEncomienda extends Pedido {
 
     public PedidoEncomienda(){}
@@ -38,17 +40,32 @@ public class PedidoEncomienda extends Pedido {
     @Override
     public void mostrarResumen(String nombreRepartidor) {
         System.out.println(
-                "El número pedido "
+                "El pedido número "
                         + getIdPedido()
                         + " con dirección de entrega: "
                         + getDireccionEntrega()
-                        + " ha clasificado como tipo pedido: "
-                        + getTipoPedido() + " asignado al repartidor: "
+                        + "Ha clasificado como tipo pedido: "
+                        + getTipoPedido() + "Asignado al repartidor: "
                         + nombreRepartidor);
     }
 
-    @Override
     public int calcularTiempoEntrega(){
         return (int) Math.round(20 + 1.5 * distanciaKm);
     }
+
+    @Override
+    public String cancelar(String motivoCancelacion) {
+        return motivoCancelacion;
+    }
+
+    @Override
+    public String despachar(String modoDespacho) {
+        return modoDespacho;
+    }
+
+    @Override
+    public List<String> verHistorial() {
+        return List.of();
+    }
+
 }

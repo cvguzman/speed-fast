@@ -1,5 +1,5 @@
 package org.cvguzman.interfaces;
 
 public interface Despachable {
-    boolean despachar();
+    String despachar(String modoDespacho);
 }

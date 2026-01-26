@@ -1,10 +1,38 @@
 package org.cvguzman.gestores;
 
-public abstract class Pedido {
+import org.cvguzman.interfaces.Cancelable;
+import org.cvguzman.interfaces.Despachable;
+import org.cvguzman.interfaces.Rastreable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Pedido implements Cancelable, Despachable, Rastreable {
     private int idPedido;
     private String direccionEntrega;
     private String tipoPedido;
     protected int distanciaKm;
+
+    private List<String> historial = new ArrayList<>();
+
+    @Override
+    public String cancelar(String motivoCancelacion) {
+        String evento = "Pedido cancelado: " + motivoCancelacion;
+        historial.add(evento);
+        return evento;
+    }
+
+   @Override
+   public String despachar(String modoDespacho) {
+        String evento = "Pedido despachado: " + modoDespacho;
+        historial.add(evento);
+        return evento;
+   }
+
+   @Override
+    public List<String> verHistorial() {
+        return historial;
+    }
 
     public Pedido(){}
 
@@ -48,13 +76,20 @@ public abstract class Pedido {
                                    );
     }
 
-    public void mostrarResumen() {
+    public String mostrarResumen() {
         System.out.println("El pedido debe contener su número, dirección, tipo de pedido y nombre repartidor");
+        return null;
     }
 
-    public void mostrarResumen(String nombreRepartidor) {
-        System.out.println("Asignación para " + nombreRepartidor);
-        System.out.println("Distancia del pedido: " + distanciaKm + " km");
+    public void mostrarResumen(String nombreRepartidor){
+        System.out.println(
+                "El número pedido "
+                        + getIdPedido()
+                        + " con dirección de entrega: "
+                        + getDireccionEntrega()
+                        + " ha clasificado como tipo pedido: "
+                        + getTipoPedido() + " asignado al repartidor: "
+                        + nombreRepartidor);
     }
 
     public abstract int calcularTiempoEntrega();
