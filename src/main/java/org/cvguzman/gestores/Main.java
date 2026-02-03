@@ -5,6 +5,8 @@ import org.cvguzman.subclases.PedidoComida;
 import org.cvguzman.subclases.PedidoEncomienda;
 import org.cvguzman.subclases.PedidoExpress;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -13,7 +15,12 @@ public class Main {
         System.out.println(":::::::PRUEBA POLIMORFISMO ---> SOBRESCRITURA::::::");
         System.out.println(" ");
 
-        Pedido[] pedidos = {new PedidoComida(), new PedidoEncomienda(), new PedidoExpress()};
+        Pedido[] pedidos = {new PedidoComida(), new PedidoEncomienda(), new PedidoExpress() {
+            @Override
+            public void despachar() {
+
+            }
+        }};
 
         for (Pedido p : pedidos) {
             p.asignarRepartidor();
@@ -56,11 +63,28 @@ public class Main {
         System.out.println("El pedido número " + repartidor3.getIdPedido());
         System.out.println(repartidor3.cancelar("Se ha cancelado Pedido Express por no haber repartidor cerca y con disponibilidad inmediata"));
 
-        PedidoComida pedido = new PedidoComida();
 
-        for (String evento : pedido.verHistorial()) {
-            System.out.println((evento));
+        System.out.println(" ");
+        System.out.println("::::::HILOS::::::");
+
+        Pedido p1 = new PedidoComida(1, "Av Central 3", "Comida", 6);
+        Pedido p2 = new PedidoExpress(2, "Av Suecia 23", "Express", 4);
+
+        Pedido p3 = new PedidoEncomienda(5, "Torre 33", " Encomienda", 6);
+        Pedido p4 = new PedidoComida(8, "Las Tacas 22", "Comida", 5);
+
+        Pedido p5 = new PedidoExpress(10, "Los nidos 43", "Express", 3);
+        Pedido p6 = new PedidoExpress(12, "Los cilos 3", "Express", 3);
+
+
+        Repartidor r1 = new Repartidor("Carlos", List.of (p1,p2) );
+        Repartidor r2 = new Repartidor( "Luis", List.of(p3, p4));
+        Repartidor r3 = new Repartidor( "Mauricio", List.of(p5, p6));
+
+        r1.start();
+        r2.start();
+        r3.start();
+
         }
     }
-}
 
