@@ -1,6 +1,5 @@
 package org.cvguzman.gestores;
 
-import org.cvguzman.interfaces.Rastreable;
 import org.cvguzman.subclases.PedidoComida;
 import org.cvguzman.subclases.PedidoEncomienda;
 import org.cvguzman.subclases.PedidoExpress;
