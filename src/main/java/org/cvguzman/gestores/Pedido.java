@@ -7,7 +7,7 @@ import org.cvguzman.interfaces.Rastreable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Pedido implements Cancelable, Despachable, Rastreable {
+public class Pedido implements Cancelable, Despachable, Rastreable {
     private int idPedido;
     private String direccionEntrega;
     private String tipoPedido;
@@ -92,7 +92,14 @@ public abstract class Pedido implements Cancelable, Despachable, Rastreable {
                         + nombreRepartidor);
     }
 
-    public abstract int calcularTiempoEntrega();
+
+    public int calcularTiempoEntrega() {
+        return 0;
+    };
+
+    public void despachar() {
+        return;
+    }
 }
 
 
