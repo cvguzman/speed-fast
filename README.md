@@ -1,5 +1,5 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
-# 🧠 Evaluación Sumativa 1 Semana 3 – Desarrollo Orientado a Objetos II
+# 🧠 Evaluación Sumativa 2 Semana 5 – Desarrollo Orientado a Objetos II
 
 ## 👤 Autor del proyecto
 - **Nombre completo:** Cinthya Guzmán
@@ -10,14 +10,15 @@
 ---
 
 ## 📘 Descripción general del sistema
- 
-Se pide el desarrollo integral del sistema de entregas para SpeedFast,
-incorporando de forma conjunta los principios de polimorfismo, abstracción e interfaces. A
-partir de una clase base Pedido() que permita
-gestionar pedidos de tipo comida, encomiendas y compras express, cada uno con reglas de
-negocio particulares para su asignación y entrega. Además se implementa interfaces como
-Despachable, Cancelable y Rastreable, con el fin de desacoplar la lógica de las
-operaciones funcionales y favorecer la mantenibilidad del sistema.
+
+La empresa Speed Fast solicita la mejora de su sistema, donde múltiples repartidores realizan entregas en paralelo. La empresa ha detectado que, durante
+el proceso de despacho, algunos repartidores acceden al mismo tiempo a la zona de carga
+para retirar pedidos, lo que puede provocar errores y entregas duplicadas. Por lo que deberás diseñar y
+modificar una estructura de clases en Java que utilice Thread, Runnable y mecanismos de
+sincronización para coordinar la ejecución de múltiples tareas en paralelo.
+Diseñarás un sistema orientado a objetos que represente diversos actores accediendo a
+recursos compartidos, aplicando técnicas de control de concurrencia para evitar condiciones
+de carrera y garantizar la integridad de los datos.
 
 
 ---
@@ -33,17 +34,14 @@ SpeedFast/
  │    └── main/
  │        └──  java/
  │               └── org.cvguzman/
- │                  ├── gestores/
- │                  │     ├── Main.java
- |                  |     └── Pedido.java
- │                  ├── interfaces/
- │                  │     └── Cancelable.java
- │                  │     └── Despachable.java
- |                  |     └── Rastreable.java
- │                  └── subclases/
- │                        └── PedidoComida.java  
- │                        └── PedidoEncomienda.java
- │                        └── PedidoExpress.java/
+ │                  └── gestores/
+ │                          ├── EstadoPedido.java
+ |                          └── Main.java
+ │                          └── Pedido.java
+ │                          └── Repartidor.java
+ │                          └── ZonaDeCarga.java
+ |                 
+ │                  
  |                      
  ├── target/
  ├── .gitignore
@@ -54,20 +52,24 @@ El proyecto está ordenado con una estructura sencilla que separa las tareas:
 
 # org.cvguzman.gestores.
 
-Este paquete contiene las clases encargadas de coordinar la lógica del negocio y la gestión de los pedidos.
-Actúa como una capa intermedia que, organiza las operaciones del sistema, evitando que la lógica principal se concentre en una sola clase y mejorando la mantenibilidad del software.
+Este paquete contiene las clases encargadas de coordinar la lógica del negocio y la gestión de los pedidos con su respectiva entrega.
+
+Clase Pedido()
+Contiene la información básica del pedido, como su identificador, la dirección de entrega su estado actual. Utiliza un enum para manejar los distintosestados del pedido lo que mejora la seguridad y la legibilidad del código. cada pedido se inicializa en estado PENDIENTE y su estado se actualiza durante el proceso de reparto.
+
+Enum EstadoPedido()
+Define los posibles estadospor los que puede pasar un pedido: PENDIENTE, EN_REPARTO y ENTREGADO El uso de un enumevita errores de tipeo y asegura que el estado del pedido solo pueda tomar valores válidos previamente definidos.
+
+Clase Repartidor()
+Representa un repartidor que trabaja de forma concurrente. Implementa la interfaz Runneable para ejecutar su lógica en un hilo independiente. Cada repartidor retira pedidos desde la zona de carga, actualiza su estado durante el reparto, y simula la entrega mediante una pausa hasta que no quedan mas pedidos por procesar.
+
+Clase ZonaDeCarga()
+Actúa como un recurso compartido entre los repartidores. Se encarga de almacenar los pedidos pendientes utilizando una Blockingqueue garantizando el acceso seguro en un entorno concurrente. Permite agrega nuevos pedidos y retirarlos de forma controlada, evitando que un mismo pedidosea procesado más de una vez.
+
+Clase Main()
+Es el punto de entrada de la aplicación. Se encarga de inicializar la zona de carga crear los pedidos lanzar múltiples hilos de repartidores mediante un ExecutorService y esperar a que todos los pedids sean entregados antes de finalizar la ejecución del programa.
 
 
-# org.cvguzman.interfaces.
-
-En este paquete contiene las intergaces del sistema, las cuales definen los contratos que deben cumplir las clases que las implementan.
-Permite separar responsabilidades como cancelacion, despacho y rastreo de pedidos, promoviendo un diseño desacoplado, reutilizable y fácil de entender.
-
-# org.cvguzman.subclases.
-
-
-Este paquete agrupa las clases concretas que heredan de la clase base -Pedido.
-cada subclase representa un tipo específico de pedido (por ejemplo, comida, encomienda o express), encapsulando reglas de negocio particulares y permitiendo aplicar porlimorfismo para tratar distintos pedidos de forma uniforme.
 
 
 ---
@@ -90,7 +92,7 @@ git clone https://github.com/cvguzman/speed-fast.git
 ---
 
 **Repositorio GitHub:** https://github.com/cvguzman/speed-fast
-**Fecha de entrega:** 26/01/2026
+**Fecha de entrega:** 09/02/2026
 
 ---
 

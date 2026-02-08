@@ -11,7 +11,7 @@ public class Main {
 
         for (int i = 1; i <= 5; i++) {
             zonaDeCarga.agregarPedido(
-                    new Pedido(i, "Las Torres 15, Peñalolen", 1)
+                    new Pedido(133, "Las Torres 15, Peñalolen", 1)
             );
         }
 
