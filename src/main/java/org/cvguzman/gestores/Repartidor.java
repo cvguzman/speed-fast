@@ -1,32 +1,37 @@
 package org.cvguzman.gestores;
 
-import java.util.List;
+public class Repartidor implements Runnable {
 
-public class Repartidor extends Thread implements Runnable {
-    private String nombreRepartidor;
-    private List<Pedido> pedidosAsignados;
+    private String nombre;
+    private ZonaDeCarga zonaDeCarga;
 
-    public Repartidor() {
-    }
-
-    public Repartidor(String nombreRepartidor, List<Pedido> pedidosAsignados) {
-        this.nombreRepartidor = nombreRepartidor;
-        this.pedidosAsignados = pedidosAsignados;
+    public Repartidor(String nombre, ZonaDeCarga zonaDeCarga) {
+        this.nombre = nombre;
+        this.zonaDeCarga = zonaDeCarga;
     }
 
     @Override
     public void run() {
-        System.out.println("Repartidor " + nombreRepartidor + " inicia entregas");
+        while (true) {
 
-        for (Pedido pedido : pedidosAsignados) {
-            pedido.mostrarResumen();
-            pedido.despachar();
+            Pedido pedido = zonaDeCarga.retirarPedido();
+
+            if (pedido == null) {
+                break; // no hay más pedidos
+            }
+
+            pedido.setEstado(EstadoPedido.valueOf(String.valueOf(EstadoPedido.EN_REPARTO)));
+            System.out.println(nombre + " se encuentra en reparto con el pedido " + pedido.getId());
 
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                System.out.println(e);
+                Thread.currentThread().interrupt();
             }
+
+            pedido.setEstado(EstadoPedido.ENTREGADO);
+            System.out.println(nombre + " ya entregó el pedido " + pedido.getId());
         }
     }
 }
+
