@@ -9,14 +9,20 @@ public class ZonaDeCarga {
 
     public ZonaDeCarga() {
         this.pedidosPendientes = new LinkedBlockingQueue<>();
+        System.out.println("[ZONA DE CARGA INICIALIZADA]");
     }
 
-    public void agregarPedido(Pedido p) {
+    public synchronized void agregarPedido(Pedido p) {
         pedidosPendientes.add(p);
-        System.out.println("Pedido agregado" + p);
+        System.out.println("Pedido N° " + p.getId() + " agregado. Destino: " + p.getDireccionEntrega());
     }
 
-    public Pedido retirarPedido() {
-        return pedidosPendientes.poll();
+    public synchronized Pedido retirarPedido() {
+        Pedido p = pedidosPendientes.poll();
+
+        if(p == null) {
+            System.out.println("[ZONA DE CARGA VACIA]");
+        }
+        return p;
     }
 }

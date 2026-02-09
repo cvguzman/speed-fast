@@ -17,11 +17,12 @@ public class Repartidor implements Runnable {
             Pedido pedido = zonaDeCarga.retirarPedido();
 
             if (pedido == null) {
-                break; // no hay más pedidos
+                break;
             }
 
-            pedido.setEstado(EstadoPedido.valueOf(String.valueOf(EstadoPedido.EN_REPARTO)));
-            System.out.println(nombre + " se encuentra en reparto con el pedido " + pedido.getId());
+            System.out.println("[REPARTIDOR - " + nombre + "] RETIRANDO EL PEDIDO N°" + pedido.getId() + " . . . ");
+            pedido.setEstado(EstadoPedido.EN_REPARTO);
+            System.out.println("[REPARTIDOR- " + nombre + "] ESTADO: EN REPARTO");
 
             try {
                 Thread.sleep(3000);
@@ -29,8 +30,9 @@ public class Repartidor implements Runnable {
                 Thread.currentThread().interrupt();
             }
 
+            System.out.println("REPARTIDOR - " + nombre + "] ENTREGANDO PEDIDO N°" + pedido.getId() + " . . .");
             pedido.setEstado(EstadoPedido.ENTREGADO);
-            System.out.println(nombre + " ya entregó el pedido " + pedido.getId());
+            System.out.println("[REPARTIDOR - " + nombre + "] ESTADO: ENTREGADO");
         }
     }
 }
