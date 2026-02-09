@@ -17,6 +17,27 @@ public class Main {
       zonaDeCarga.agregarPedido(new Pedido(4, "Lo Espejo"));
       zonaDeCarga.agregarPedido(new Pedido(5, "Las Condes"));
 
+      Thread r1 = new Thread(new Repartidor("Repartidor Marcelo", zonaDeCarga));
+      Thread r2 = new Thread(new Repartidor("Repartidor Luis", zonaDeCarga));
+      Thread r3 = new Thread(new Repartidor("Repartidor Gerardo", zonaDeCarga));
+
+      try {
+          r1.start();
+          r1.join();
+
+          r2.start();
+          r2.join();
+
+          r3.start();
+          r3.join();
+      } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+      }
+
+        System.out.println(" ");
+        System.out.println("Los pedidos han sido repartidos correctamente");
+        System.out.println(" ");
+
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
