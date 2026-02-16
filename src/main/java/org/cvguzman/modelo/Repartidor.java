@@ -1,4 +1,4 @@
-package org.cvguzman.gestores;
+package org.cvguzman.modelo;
 
 public class Repartidor implements Runnable {
 

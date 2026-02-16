@@ -1,4 +1,4 @@
-package org.cvguzman.gestores;
+package org.cvguzman.modelo;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
